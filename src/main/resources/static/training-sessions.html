@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Registro de sesiones y actividad física de SMARTGYM Health Track"
+    >
+
+    <title>Sesiones de Entrenamiento | SMARTGYM Health Track</title>
+
+    <link rel="stylesheet" href="/css/styles.css?v=20">
+    <link rel="stylesheet" href="/css/enterprise.css?v=20">
+    <link rel="stylesheet" href="/css/training-sessions.css?v=20">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                SG
+            </div>
+
+            <div>
+                <h1>SMARTGYM</h1>
+                <span>Health Track</span>
+            </div>
+
+        </div>
+
+        <nav class="navigation">
+
+            <a href="/index.html" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+
+            <a href="/identity.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Identidad</span>
+            </a>
+
+            <a href="/members.html" class="nav-item">
+                <span class="nav-icon">🏃</span>
+                <span class="nav-label">Deportistas</span>
+            </a>
+
+            <a href="/health-records.html" class="nav-item">
+                <span class="nav-icon">♥</span>
+                <span class="nav-label">Expediente Clínico</span>
+            </a>
+
+            <a href="/physical-assessments.html" class="nav-item">
+                <span class="nav-icon">💪</span>
+                <span class="nav-label">Evaluación Física</span>
+            </a>
+
+            <a href="/training-routines.html" class="nav-item">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-label">Rutinas</span>
+            </a>
+
+            <a href="/training-sessions.html" class="nav-item active">
+                <span class="nav-icon">▶</span>
+                <span class="nav-label">Sesiones</span>
+            </a>
+
+            <a href="/nutrition.html" class="nav-item">
+                <span class="nav-icon">◉</span>
+                <span class="nav-label">Nutrición</span>
+            </a>
+
+            <a href="/analytics.html" class="nav-item">
+                <span class="nav-icon">📈</span>
+                <span class="nav-label">Analítica</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <strong>SMARTGYM</strong>
+            <small>Versión 1.0.0</small>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">
+                    Seguimiento de actividad
+                </p>
+
+                <h2>
+                    Sesiones de Entrenamiento
+                </h2>
+            </div>
+
+            <div class="user-area">
+
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    Sistema activo
+                </div>
+
+                <div class="avatar">
+                    AC
+                </div>
+
+            </div>
+
+        </header>
+
+        <section class="session-hero">
+
+            <div>
+
+                <p class="eyebrow">
+                    SMARTGYM Activity Tracking
+                </p>
+
+                <h3>
+                    Registro real del entrenamiento realizado
+                </h3>
+
+                <p>
+                    Registra pasos, cardio, distancia, calorías,
+                    gradas, frecuencia cardíaca, peso levantado,
+                    cumplimiento de ejercicios y molestias reportadas.
+                </p>
+
+            </div>
+
+            <div class="session-hero-badge">
+
+                <strong id="heroSessionCount">
+                    0
+                </strong>
+
+                <span>
+                    sesiones registradas
+                </span>
+
+            </div>
+
+        </section>
+
+        <section class="enterprise-kpi-grid">
+
+            <article class="enterprise-kpi">
+
+                <span class="enterprise-kpi-label">
+                    Sesiones
+                </span>
+
+                <strong
+                    id="totalSessionsCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Actividades registradas
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi success">
+
+                <span class="enterprise-kpi-label">
+                    Completadas
+                </span>
+
+                <strong
+                    id="completedSessionsCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Sesiones finalizadas
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi gold">
+
+                <span class="enterprise-kpi-label">
+                    Pasos registrados
+                </span>
+
+                <strong
+                    id="totalStepsValue"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Acumulado del historial
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi info">
+
+                <span class="enterprise-kpi-label">
+                    Calorías
+                </span>
+
+                <strong
+                    id="totalCaloriesValue"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Calorías consumidas
+                </span>
+
+            </article>
+
+        </section>
+
+        <section class="session-tabs-card">
+
+            <div class="session-tabs">
+
+                <button
+                    id="historyTabButton"
+                    class="session-tab active"
+                    type="button"
+                    data-panel="history"
+                >
+                    Historial
+                </button>
+
+                <button
+                    id="registerTabButton"
+                    class="session-tab"
+                    type="button"
+                    data-panel="register"
+                >
+                    Registrar sesión
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- HISTORIAL -->
+
+        <section
+            id="sessionHistoryPanel"
+            class="content-card session-panel"
+        >
+
+            <div class="enterprise-page-header">
+
+                <div class="enterprise-page-title">
+
+                    <p class="eyebrow">
+                        Actividad realizada
+                    </p>
+
+                    <h3>
+                        Historial de sesiones
+                    </h3>
+
+                    <p class="enterprise-page-subtitle">
+                        Consulta las sesiones realizadas, el tipo de
+                        actividad y los resultados obtenidos.
+                    </p>
+
+                </div>
+
+                <button
+                    id="newSessionButton"
+                    class="enterprise-button primary"
+                    type="button"
+                >
+                    + Registrar sesión
+                </button>
+
+            </div>
+
+            <div class="enterprise-toolbar session-toolbar">
+
+                <div class="enterprise-search">
+
+                    <input
+                        id="sessionSearchInput"
+                        type="search"
+                        placeholder="Buscar deportista, rutina o actividad"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+                <div class="enterprise-filter">
+
+                    <label for="sessionMemberFilter">
+                        Deportista
+                    </label>
+
+                    <select id="sessionMemberFilter">
+                        <option value="all">
+                            Todos
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="enterprise-filter">
+
+                    <label for="sessionActivityFilter">
+                        Actividad
+                    </label>
+
+                    <select id="sessionActivityFilter">
+                        <option value="all">Todas</option>
+                        <option value="FUERZA">Fuerza</option>
+                        <option value="CARDIO">Cardio</option>
+                        <option value="CAMINATA">Caminata</option>
+                        <option value="CARRERA">Carrera</option>
+                        <option value="BICICLETA">Bicicleta</option>
+                        <option value="ESCALERAS">Escaleras</option>
+                        <option value="NATACION">Natación</option>
+                        <option value="MOVILIDAD">Movilidad</option>
+                        <option value="REHABILITACION">
+                            Rehabilitación
+                        </option>
+                        <option value="OTRA">Otra</option>
+                    </select>
+
+                </div>
+
+                <button
+                    id="refreshSessionsButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Actualizar
+                </button>
+
+            </div>
+
+            <div
+                id="sessionsLoading"
+                class="session-loading"
+            >
+                Cargando sesiones...
+            </div>
+
+            <div
+                id="sessionsError"
+                class="error-message hidden"
+                role="alert"
+            ></div>
+
+            <div
+                id="sessionsEmpty"
+                class="enterprise-empty hidden"
+            >
+
+                <div class="enterprise-empty-icon">
+                    SE
+                </div>
+
+                <h4>No existen sesiones</h4>
+
+                <p>
+                    Registra la primera actividad realizada.
+                </p>
+
+            </div>
+
+            <div class="enterprise-table-container">
+
+                <div class="enterprise-table-scroll">
+
+                    <table class="enterprise-table">
+
+                        <thead>
+                            <tr>
+                                <th>Deportista</th>
+                                <th>Fecha</th>
+                                <th>Actividad</th>
+                                <th>Duración</th>
+                                <th>Pasos</th>
+                                <th>Calorías</th>
+                                <th>Cumplimiento</th>
+                                <th>Estado</th>
+                                <th class="actions-cell">
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="sessionsTableBody">
+
+                            <tr>
+                                <td colspan="9">
+                                    Cargando sesiones...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- REGISTRO -->
+
+        <section
+            id="sessionRegisterPanel"
+            class="content-card session-panel hidden"
+        >
+
+            <div class="enterprise-page-header">
+
+                <div class="enterprise-page-title">
+
+                    <p class="eyebrow">
+                        Diario deportivo
+                    </p>
+
+                    <h3 id="sessionFormTitle">
+                        Registrar nueva sesión
+                    </h3>
+
+                    <p class="enterprise-page-subtitle">
+                        Ingresa los datos reales de la actividad
+                        ejecutada por el deportista.
+                    </p>
+
+                </div>
+
+                <button
+                    id="backToHistoryButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Volver al historial
+                </button>
+
+            </div>
+
+            <form
+                id="trainingSessionForm"
+                novalidate
+            >
+
+                <input
+                    id="trainingSessionId"
+                    type="hidden"
+                >
+
+                <div class="enterprise-form-section">
+
+                    <div class="enterprise-form-section-title">
+                        Deportista y rutina
+                    </div>
+
+                    <div class="enterprise-form-grid">
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionMemberId">
+                                Deportista
+                                <span class="enterprise-required">*</span>
+                            </label>
+
+                            <select
+                                id="trainingSessionMemberId"
+                                required
+                            >
+                                <option value="">
+                                    Seleccione un deportista
+                                </option>
+                            </select>
+
+                            <small
+                                id="sessionMemberValidation"
+                                class="enterprise-field-message"
+                            ></small>
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionRoutineId">
+                                Rutina prescrita
+                            </label>
+
+                            <select id="trainingSessionRoutineId">
+
+                                <option value="">
+                                    Actividad libre, sin rutina
+                                </option>
+
+                            </select>
+
+                            <small class="enterprise-field-message">
+                                Selecciona una rutina para cargar sus ejercicios.
+                            </small>
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionDate">
+                                Fecha
+                            </label>
+
+                            <input
+                                id="trainingSessionDate"
+                                type="date"
+                            >
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionActivityType">
+                                Tipo de actividad
+                                <span class="enterprise-required">*</span>
+                            </label>
+
+                            <select
+                                id="trainingSessionActivityType"
+                                required
+                            >
+                                <option value="FUERZA">Fuerza</option>
+                                <option value="CARDIO">Cardio</option>
+                                <option value="CAMINATA">Caminata</option>
+                                <option value="CARRERA">Carrera</option>
+                                <option value="BICICLETA">Bicicleta</option>
+                                <option value="ESCALERAS">Escaleras</option>
+                                <option value="NATACION">Natación</option>
+                                <option value="MOVILIDAD">Movilidad</option>
+                                <option value="REHABILITACION">
+                                    Rehabilitación
+                                </option>
+                                <option value="OTRA">Otra</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="enterprise-form-section">
+
+                    <div class="enterprise-form-section-title">
+                        Tiempo de entrenamiento
+                    </div>
+
+                    <div class="enterprise-form-grid">
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionStartTime">
+                                Hora de inicio
+                            </label>
+
+                            <input
+                                id="trainingSessionStartTime"
+                                type="time"
+                            >
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionEndTime">
+                                Hora de finalización
+                            </label>
+
+                            <input
+                                id="trainingSessionEndTime"
+                                type="time"
+                            >
+
+                            <small
+                                id="sessionTimeValidation"
+                                class="enterprise-field-message"
+                            ></small>
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionDuration">
+                                Duración total (min)
+                            </label>
+
+                            <input
+                                id="trainingSessionDuration"
+                                type="number"
+                                min="0"
+                                max="1440"
+                            >
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionCardioMinutes">
+                                Tiempo de cardio (min)
+                            </label>
+
+                            <input
+                                id="trainingSessionCardioMinutes"
+                                type="number"
+                                min="0"
+                                max="1440"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="enterprise-form-section">
+
+                    <div class="enterprise-form-section-title">
+                        Actividad diaria
+                    </div>
+
+                    <div class="session-activity-grid">
+
+                        <label class="session-metric-field">
+
+                            <span>Pasos</span>
+
+                            <input
+                                id="trainingSessionSteps"
+                                type="number"
+                                min="0"
+                                placeholder="0"
+                            >
+
+                            <small>pasos</small>
+
+                        </label>
+
+                        <label class="session-metric-field">
+
+                            <span>Distancia</span>
+
+                            <input
+                                id="trainingSessionDistance"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                placeholder="0.00"
+                            >
+
+                            <small>kilómetros</small>
+
+                        </label>
+
+                        <label class="session-metric-field">
+
+                            <span>Calorías</span>
+
+                            <input
+                                id="trainingSessionCalories"
+                                type="number"
+                                min="0"
+                                placeholder="0"
+                            >
+
+                            <small>kcal</small>
+
+                        </label>
+
+                        <label class="session-metric-field">
+
+                            <span>Pisos o gradas</span>
+
+                            <input
+                                id="trainingSessionFloors"
+                                type="number"
+                                min="0"
+                                placeholder="0"
+                            >
+
+                            <small>pisos</small>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div class="enterprise-form-section">
+
+                    <div class="enterprise-form-section-title">
+                        Frecuencia cardíaca y percepción
+                    </div>
+
+                    <div class="enterprise-form-grid">
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionAverageHeartRate">
+                                Frecuencia cardíaca promedio
+                            </label>
+
+                            <input
+                                id="trainingSessionAverageHeartRate"
+                                type="number"
+                                min="1"
+                                max="250"
+                            >
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionMaximumHeartRate">
+                                Frecuencia cardíaca máxima
+                            </label>
+
+                            <input
+                                id="trainingSessionMaximumHeartRate"
+                                type="number"
+                                min="1"
+                                max="250"
+                            >
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionEffortLevel">
+                                Nivel de esfuerzo
+                            </label>
+
+                            <select id="trainingSessionEffortLevel">
+                                <option value="">No registrado</option>
+                                <option value="1">1 - Muy suave</option>
+                                <option value="2">2</option>
+                                <option value="3">3 - Suave</option>
+                                <option value="4">4</option>
+                                <option value="5">5 - Moderado</option>
+                                <option value="6">6</option>
+                                <option value="7">7 - Intenso</option>
+                                <option value="8">8</option>
+                                <option value="9">9 - Muy intenso</option>
+                                <option value="10">10 - Máximo</option>
+                            </select>
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label for="trainingSessionPainLevel">
+                                Dolor o molestia
+                            </label>
+
+                            <select id="trainingSessionPainLevel">
+                                <option value="">No registrado</option>
+                                <option value="0">0 - Sin dolor</option>
+                                <option value="1">1</option>
+                                <option value="2">2 - Leve</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 - Moderado</option>
+                                <option value="6">6</option>
+                                <option value="7">7 - Intenso</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10 - Máximo</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="enterprise-form-section">
+
+                    <div class="session-exercises-header">
+
+                        <div>
+
+                            <div class="enterprise-form-section-title">
+                                Ejercicios realizados
+                            </div>
+
+                            <p>
+                                Los ejercicios prescritos se cargarán
+                                automáticamente al seleccionar una rutina.
+                            </p>
+
+                        </div>
+
+                        <button
+                            id="addPerformedExerciseButton"
+                            class="enterprise-button secondary"
+                            type="button"
+                        >
+                            + Agregar ejercicio libre
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="performedExercisesList"
+                        class="performed-exercises-list"
+                    ></div>
+
+                    <div
+                        id="performedExercisesEmpty"
+                        class="performed-exercises-empty"
+                    >
+                        No existen ejercicios cargados.
+                    </div>
+
+                </div>
+
+                <div class="enterprise-form-section">
+
+                    <div class="enterprise-form-grid">
+
+                        <div class="enterprise-field full">
+
+                            <label for="trainingSessionObservations">
+                                Observaciones
+                            </label>
+
+                            <textarea
+                                id="trainingSessionObservations"
+                                maxlength="5000"
+                                placeholder="Técnica, molestias, progreso y recomendaciones..."
+                            ></textarea>
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label class="switch-row">
+
+                                <input
+                                    id="trainingSessionCompleted"
+                                    type="checkbox"
+                                    checked
+                                >
+
+                                <span>
+                                    Sesión completada
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                        <div class="enterprise-field">
+
+                            <label class="switch-row">
+
+                                <input
+                                    id="trainingSessionActive"
+                                    type="checkbox"
+                                    checked
+                                >
+
+                                <span>
+                                    Registro activo
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="trainingSessionFormMessage"
+                    class="form-message"
+                    role="alert"
+                ></div>
+
+                <div class="session-form-actions">
+
+                    <button
+                        id="cancelTrainingSessionButton"
+                        class="enterprise-button secondary"
+                        type="button"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        id="saveTrainingSessionButton"
+                        class="enterprise-button primary"
+                        type="submit"
+                    >
+                        Guardar sesión
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- DETALLE -->
+
+        <section
+            id="sessionDetailSection"
+            class="session-detail hidden"
+        >
+
+            <aside class="session-summary-card">
+
+                <div
+                    id="sessionDetailAvatar"
+                    class="session-profile-avatar"
+                >
+                    SE
+                </div>
+
+                <p class="eyebrow">
+                    Sesión seleccionada
+                </p>
+
+                <h3 id="sessionDetailMember">
+                    Deportista
+                </h3>
+
+                <p id="sessionDetailRoutine">
+                    Actividad libre
+                </p>
+
+                <div class="session-summary-badges">
+
+                    <span
+                        id="sessionDetailActivity"
+                        class="session-activity-badge"
+                    >
+                        Actividad
+                    </span>
+
+                    <span
+                        id="sessionDetailStatus"
+                        class="enterprise-badge active"
+                    >
+                        Completada
+                    </span>
+
+                </div>
+
+                <div class="session-summary-data">
+
+                    <div>
+                        <span>Fecha</span>
+                        <strong id="sessionDetailDate">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Duración</span>
+                        <strong id="sessionDetailDuration">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Cumplimiento</span>
+                        <strong id="sessionDetailCompletion">0 %</strong>
+                    </div>
+
+                    <div>
+                        <span>Volumen movilizado</span>
+                        <strong id="sessionDetailVolume">0 kg</strong>
+                    </div>
+
+                </div>
+
+                <div class="session-summary-actions">
+
+                    <button
+                        id="editTrainingSessionButton"
+                        class="enterprise-button primary"
+                        type="button"
+                    >
+                        Editar sesión
+                    </button>
+
+                    <button
+                        id="deactivateTrainingSessionButton"
+                        class="enterprise-button danger"
+                        type="button"
+                    >
+                        Desactivar
+                    </button>
+
+                    <button
+                        id="printTrainingSessionButton"
+                        class="enterprise-button secondary"
+                        type="button"
+                    >
+                        Imprimir
+                    </button>
+
+                </div>
+
+            </aside>
+
+            <div class="session-detail-content">
+
+                <section class="session-detail-metrics">
+
+                    <article class="session-detail-metric">
+                        <span>Pasos</span>
+                        <strong id="detailSteps">0</strong>
+                        <small>pasos</small>
+                    </article>
+
+                    <article class="session-detail-metric">
+                        <span>Distancia</span>
+                        <strong id="detailDistance">0</strong>
+                        <small>km</small>
+                    </article>
+
+                    <article class="session-detail-metric">
+                        <span>Cardio</span>
+                        <strong id="detailCardio">0</strong>
+                        <small>minutos</small>
+                    </article>
+
+                    <article class="session-detail-metric">
+                        <span>Calorías</span>
+                        <strong id="detailCalories">0</strong>
+                        <small>kcal</small>
+                    </article>
+
+                    <article class="session-detail-metric">
+                        <span>Gradas</span>
+                        <strong id="detailFloors">0</strong>
+                        <small>pisos</small>
+                    </article>
+
+                    <article class="session-detail-metric">
+                        <span>FC promedio</span>
+                        <strong id="detailAverageHeartRate">—</strong>
+                        <small>lpm</small>
+                    </article>
+
+                    <article class="session-detail-metric">
+                        <span>Esfuerzo</span>
+                        <strong id="detailEffort">—</strong>
+                        <small>de 10</small>
+                    </article>
+
+                    <article class="session-detail-metric">
+                        <span>Dolor</span>
+                        <strong id="detailPain">—</strong>
+                        <small>de 10</small>
+                    </article>
+
+                </section>
+
+                <section class="session-executed-panel">
+
+                    <div class="session-section-header">
+
+                        <div>
+                            <p class="eyebrow">
+                                Actividad ejecutada
+                            </p>
+
+                            <h3>
+                                Ejercicios realizados
+                            </h3>
+                        </div>
+
+                        <span
+                            id="sessionExerciseBadge"
+                            class="enterprise-badge premium"
+                        >
+                            0 ejercicios
+                        </span>
+
+                    </div>
+
+                    <div
+                        id="sessionExecutedExercisesList"
+                        class="session-executed-exercises"
+                    ></div>
+
+                </section>
+
+                <section class="session-observations-card">
+
+                    <p class="eyebrow">
+                        Seguimiento
+                    </p>
+
+                    <h3>
+                        Observaciones
+                    </h3>
+
+                    <p id="sessionDetailObservations">
+                        Sin observaciones registradas.
+                    </p>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="/js/training-sessions.js?v=20"></script>
+
+</body>
+</html>

@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Administración de usuarios y roles de SMARTGYM Health Track"
+    >
+
+    <title>Identidad y Acceso | SMARTGYM Health Track</title>
+
+    <link rel="stylesheet" href="/css/styles.css?v=19">
+    <link rel="stylesheet" href="/css/enterprise.css?v=17">
+    <link rel="stylesheet" href="/css/identity.css?v=17">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">SG</div>
+
+            <div>
+                <h1>SMARTGYM</h1>
+                <span>Health Track</span>
+            </div>
+        </div>
+
+                <nav class="navigation">
+
+            <a href="/index.html" class="nav-item">
+                <span class="nav-icon">&#8962;</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+
+            <a href="/identity.html" class="nav-item active">
+                <span class="nav-icon">&#128100;</span>
+                <span class="nav-label">Identidad</span>
+            </a>
+
+            <a href="/members.html" class="nav-item">
+                <span class="nav-icon">&#127939;</span>
+                <span class="nav-label">Deportistas</span>
+            </a>
+
+            <a href="/health-records.html" class="nav-item">
+                <span class="nav-icon">&#9829;</span>
+                <span class="nav-label">Expediente Clínico</span>
+            </a>
+
+            <a href="/physical-assessments.html" class="nav-item">
+                <span class="nav-icon">&#128170;</span>
+                <span class="nav-label">Evaluación Física</span>
+            </a>
+
+            <a href="/training-routines.html" class="nav-item">
+                <span class="nav-icon">&#127942;</span>
+                <span class="nav-label">Rutinas</span>
+            </a>
+
+            <a href="/nutrition.html" class="nav-item">
+                <span class="nav-icon">&#9673;</span>
+                <span class="nav-label">Nutrición</span>
+            </a>
+
+            <a href="/analytics.html" class="nav-item">
+                <span class="nav-icon">&#128200;</span>
+                <span class="nav-label">Analítica</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <strong>SMARTGYM</strong>
+            <small>Versión 1.0.0</small>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">
+                    Administración institucional
+                </p>
+
+                <h2>
+                    Identidad y Acceso
+                </h2>
+            </div>
+
+            <div class="user-area">
+
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    Sistema activo
+                </div>
+
+                <div class="avatar">
+                    AC
+                </div>
+
+            </div>
+
+        </header>
+
+        <section class="identity-hero">
+
+            <div>
+
+                <p class="eyebrow">
+                    SMARTGYM Identity Management
+                </p>
+
+                <h3>
+                    Administración segura de usuarios y roles
+                </h3>
+
+                <p>
+                    Gestiona las cuentas institucionales, controla su
+                    estado de acceso y asigna los roles responsables
+                    de cada módulo de SMARTGYM Health Track.
+                </p>
+
+            </div>
+
+            <div class="identity-hero-badge">
+
+                <strong id="heroUserCount">
+                    0
+                </strong>
+
+                <span>
+                    usuarios registrados
+                </span>
+
+            </div>
+
+        </section>
+
+        <section class="enterprise-kpi-grid">
+
+            <article class="enterprise-kpi">
+
+                <span class="enterprise-kpi-label">
+                    Usuarios
+                </span>
+
+                <strong
+                    id="totalUsersCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Cuentas registradas
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi success">
+
+                <span class="enterprise-kpi-label">
+                    Activos
+                </span>
+
+                <strong
+                    id="activeUsersCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Acceso habilitado
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi gold">
+
+                <span class="enterprise-kpi-label">
+                    Roles
+                </span>
+
+                <strong
+                    id="totalRolesCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Perfiles institucionales
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi info">
+
+                <span class="enterprise-kpi-label">
+                    Bloqueados
+                </span>
+
+                <strong
+                    id="lockedUsersCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Cuentas restringidas
+                </span>
+
+            </article>
+
+        </section>
+
+        <section class="identity-tabs-card">
+
+            <div class="identity-tabs">
+
+                <button
+                    id="usersTabButton"
+                    class="identity-tab active"
+                    type="button"
+                    data-tab="users"
+                >
+                    Usuarios
+                </button>
+
+                <button
+                    id="rolesTabButton"
+                    class="identity-tab"
+                    type="button"
+                    data-tab="roles"
+                >
+                    Roles
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- USUARIOS -->
+
+        <section
+            id="usersPanel"
+            class="content-card identity-panel"
+        >
+
+            <div class="enterprise-page-header">
+
+                <div class="enterprise-page-title">
+
+                    <p class="eyebrow">
+                        Gestión de cuentas
+                    </p>
+
+                    <h3>
+                        Usuarios del sistema
+                    </h3>
+
+                    <p class="enterprise-page-subtitle">
+                        Crea, edita, activa, bloquea y asigna roles
+                        a las cuentas institucionales.
+                    </p>
+
+                </div>
+
+                <button
+                    id="newUserButton"
+                    class="enterprise-button primary"
+                    type="button"
+                >
+                    + Nuevo usuario
+                </button>
+
+            </div>
+
+            <div class="enterprise-toolbar identity-toolbar">
+
+                <div class="enterprise-search">
+
+                    <input
+                        id="userSearchInput"
+                        type="search"
+                        placeholder="Buscar por nombre, usuario o correo"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+                <div class="enterprise-filter">
+
+                    <label for="userRoleFilter">
+                        Rol
+                    </label>
+
+                    <select id="userRoleFilter">
+                        <option value="all">
+                            Todos
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="enterprise-filter">
+
+                    <label for="userStatusFilter">
+                        Estado
+                    </label>
+
+                    <select id="userStatusFilter">
+                        <option value="all">Todos</option>
+                        <option value="active">Activos</option>
+                        <option value="inactive">Inactivos</option>
+                        <option value="locked">Bloqueados</option>
+                    </select>
+
+                </div>
+
+                <button
+                    id="refreshUsersButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Actualizar
+                </button>
+
+            </div>
+
+            <div
+                id="usersLoading"
+                class="identity-loading"
+            >
+                Cargando usuarios...
+            </div>
+
+            <div
+                id="usersError"
+                class="error-message hidden"
+                role="alert"
+            ></div>
+
+            <div
+                id="usersEmpty"
+                class="enterprise-empty hidden"
+            >
+                <div class="enterprise-empty-icon">US</div>
+
+                <h4>No existen usuarios</h4>
+
+                <p>
+                    Crea la primera cuenta institucional.
+                </p>
+            </div>
+
+            <div class="enterprise-table-container">
+
+                <div class="enterprise-table-scroll">
+
+                    <table class="enterprise-table identity-users-table">
+
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Correo</th>
+                                <th>Roles</th>
+                                <th>Estado</th>
+                                <th>Bloqueo</th>
+                                <th>Creación</th>
+                                <th class="actions-cell">
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="usersTableBody">
+
+                            <tr>
+                                <td colspan="7">
+                                    Cargando usuarios...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- DETALLE DEL USUARIO -->
+
+        <section
+            id="userDetailSection"
+            class="identity-user-detail hidden"
+        >
+
+            <aside class="identity-user-card">
+
+                <div
+                    id="userDetailAvatar"
+                    class="identity-profile-avatar"
+                >
+                    US
+                </div>
+
+                <p class="eyebrow">
+                    Usuario seleccionado
+                </p>
+
+                <h3 id="userDetailFullName">
+                    Usuario
+                </h3>
+
+                <p id="userDetailUsername">
+                    @usuario
+                </p>
+
+                <div class="identity-user-badges">
+
+                    <span
+                        id="userDetailStatus"
+                        class="enterprise-badge active"
+                    >
+                        Activo
+                    </span>
+
+                    <span
+                        id="userDetailLockStatus"
+                        class="enterprise-badge inactive"
+                    >
+                        Sin bloqueo
+                    </span>
+
+                </div>
+
+                <div class="identity-user-data">
+
+                    <div>
+                        <span>Correo</span>
+
+                        <strong id="userDetailEmail">
+                            Sin correo
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Fecha de creación</span>
+
+                        <strong id="userDetailCreatedAt">
+                            —
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Última modificación</span>
+
+                        <strong id="userDetailUpdatedAt">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="identity-user-actions">
+
+                    <button
+                        id="editUserButton"
+                        class="enterprise-button primary"
+                        type="button"
+                    >
+                        Editar usuario
+                    </button>
+
+                    <button
+                        id="toggleUserLockButton"
+                        class="enterprise-button gold"
+                        type="button"
+                    >
+                        Bloquear usuario
+                    </button>
+
+                    <button
+                        id="deactivateUserButton"
+                        class="enterprise-button danger"
+                        type="button"
+                    >
+                        Desactivar
+                    </button>
+
+                </div>
+
+            </aside>
+
+            <div class="identity-user-content">
+
+                <section class="identity-roles-card">
+
+                    <div class="identity-section-header">
+
+                        <div>
+                            <p class="eyebrow">
+                                Control de acceso
+                            </p>
+
+                            <h3>
+                                Roles asignados
+                            </h3>
+                        </div>
+
+                        <span
+                            id="userRoleCountBadge"
+                            class="enterprise-badge premium"
+                        >
+                            0 roles
+                        </span>
+
+                    </div>
+
+                    <div
+                        id="userRolesList"
+                        class="identity-assigned-roles"
+                    ></div>
+
+                </section>
+
+                <section class="identity-access-placeholder">
+
+                    <p class="eyebrow">
+                        Próxima fase
+                    </p>
+
+                    <h3>
+                        Sesiones y auditoría
+                    </h3>
+
+                    <p>
+                        Aquí se mostrarán el último acceso, dirección IP,
+                        dispositivo, sesiones activas y eventos de auditoría
+                        cuando se implemente la siguiente capa de seguridad.
+                    </p>
+
+                </section>
+
+            </div>
+
+        </section>
+
+        <!-- ROLES -->
+
+        <section
+            id="rolesPanel"
+            class="content-card identity-panel hidden"
+        >
+
+            <div class="enterprise-page-header">
+
+                <div class="enterprise-page-title">
+
+                    <p class="eyebrow">
+                        Control de acceso
+                    </p>
+
+                    <h3>
+                        Roles institucionales
+                    </h3>
+
+                    <p class="enterprise-page-subtitle">
+                        Administra los perfiles utilizados para
+                        clasificar y autorizar a los usuarios.
+                    </p>
+
+                </div>
+
+                <button
+                    id="newRoleButton"
+                    class="enterprise-button primary"
+                    type="button"
+                >
+                    + Nuevo rol
+                </button>
+
+            </div>
+
+            <div class="enterprise-toolbar identity-role-toolbar">
+
+                <div class="enterprise-search">
+
+                    <input
+                        id="roleSearchInput"
+                        type="search"
+                        placeholder="Buscar por código, nombre o descripción"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+                <div class="enterprise-filter">
+
+                    <label for="roleStatusFilter">
+                        Estado
+                    </label>
+
+                    <select id="roleStatusFilter">
+                        <option value="all">Todos</option>
+                        <option value="active">Activos</option>
+                        <option value="inactive">Inactivos</option>
+                    </select>
+
+                </div>
+
+                <button
+                    id="refreshRolesButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Actualizar
+                </button>
+
+            </div>
+
+            <div
+                id="rolesLoading"
+                class="identity-loading"
+            >
+                Cargando roles...
+            </div>
+
+            <div
+                id="rolesError"
+                class="error-message hidden"
+                role="alert"
+            ></div>
+
+            <div
+                id="rolesEmpty"
+                class="enterprise-empty hidden"
+            >
+                <div class="enterprise-empty-icon">RO</div>
+
+                <h4>No existen roles</h4>
+
+                <p>
+                    Registra el primer rol institucional.
+                </p>
+            </div>
+
+            <div
+                id="rolesGrid"
+                class="identity-roles-grid"
+            ></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- MODAL DE USUARIO -->
+
+<div
+    id="userModal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="userModalTitle"
+>
+
+    <div
+        id="userModalOverlay"
+        class="modal-overlay"
+    ></div>
+
+    <section class="modal-content identity-modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <p class="eyebrow">
+                    Gestión de identidad
+                </p>
+
+                <h3 id="userModalTitle">
+                    Nuevo usuario
+                </h3>
+            </div>
+
+            <button
+                id="closeUserModalButton"
+                class="icon-button"
+                type="button"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form
+            id="userForm"
+            novalidate
+        >
+
+            <input
+                id="userId"
+                type="hidden"
+            >
+
+            <div class="enterprise-form-section">
+
+                <div class="enterprise-form-section-title">
+                    Información personal
+                </div>
+
+                <div class="enterprise-form-grid">
+
+                    <div class="enterprise-field">
+
+                        <label for="userFirstName">
+                            Nombres
+                            <span class="enterprise-required">*</span>
+                        </label>
+
+                        <input
+                            id="userFirstName"
+                            type="text"
+                            maxlength="100"
+                            required
+                        >
+
+                        <small
+                            id="userFirstNameValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="userLastName">
+                            Apellidos
+                            <span class="enterprise-required">*</span>
+                        </label>
+
+                        <input
+                            id="userLastName"
+                            type="text"
+                            maxlength="100"
+                            required
+                        >
+
+                        <small
+                            id="userLastNameValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="enterprise-form-section">
+
+                <div class="enterprise-form-section-title">
+                    Credenciales
+                </div>
+
+                <div class="enterprise-form-grid">
+
+                    <div class="enterprise-field">
+
+                        <label for="userUsername">
+                            Nombre de usuario
+                            <span class="enterprise-required">*</span>
+                        </label>
+
+                        <input
+                            id="userUsername"
+                            type="text"
+                            maxlength="80"
+                            autocomplete="off"
+                            required
+                        >
+
+                        <small
+                            id="userUsernameValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="userEmail">
+                            Correo electrónico
+                            <span class="enterprise-required">*</span>
+                        </label>
+
+                        <input
+                            id="userEmail"
+                            type="email"
+                            maxlength="180"
+                            autocomplete="off"
+                            required
+                        >
+
+                        <small
+                            id="userEmailValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field full">
+
+                        <label for="userPassword">
+                            Contraseña
+                            <span
+                                id="userPasswordRequired"
+                                class="enterprise-required"
+                            >
+                                *
+                            </span>
+                        </label>
+
+                        <input
+                            id="userPassword"
+                            type="password"
+                            minlength="8"
+                            maxlength="120"
+                            autocomplete="new-password"
+                        >
+
+                        <small
+                            id="userPasswordValidation"
+                            class="enterprise-field-message"
+                        >
+                            En edición puede dejarla vacía para conservarla.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="enterprise-form-section">
+
+                <div class="enterprise-form-section-title">
+                    Roles y estado
+                </div>
+
+                <div
+                    id="userRoleCheckboxes"
+                    class="identity-role-selector"
+                ></div>
+
+                <small
+                    id="userRolesValidation"
+                    class="enterprise-field-message"
+                ></small>
+
+                <div class="identity-user-state-grid">
+
+                    <label class="switch-row">
+
+                        <input
+                            id="userActive"
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span>
+                            Usuario activo
+                        </span>
+
+                    </label>
+
+                    <label class="switch-row">
+
+                        <input
+                            id="userLocked"
+                            type="checkbox"
+                        >
+
+                        <span>
+                            Usuario bloqueado
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div
+                id="userFormMessage"
+                class="form-message"
+                role="alert"
+            ></div>
+
+            <div class="modal-actions">
+
+                <button
+                    id="cancelUserButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    id="saveUserButton"
+                    class="enterprise-button primary"
+                    type="submit"
+                >
+                    Guardar usuario
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+<!-- MODAL DE ROL -->
+
+<div
+    id="roleModal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="roleModalTitle"
+>
+
+    <div
+        id="roleModalOverlay"
+        class="modal-overlay"
+    ></div>
+
+    <section class="modal-content identity-role-modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <p class="eyebrow">
+                    Control de acceso
+                </p>
+
+                <h3 id="roleModalTitle">
+                    Nuevo rol
+                </h3>
+            </div>
+
+            <button
+                id="closeRoleModalButton"
+                class="icon-button"
+                type="button"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form
+            id="roleForm"
+            novalidate
+        >
+
+            <input
+                id="roleId"
+                type="hidden"
+            >
+
+            <div class="enterprise-form-grid">
+
+                <div class="enterprise-field">
+
+                    <label for="roleCode">
+                        Código
+                        <span class="enterprise-required">*</span>
+                    </label>
+
+                    <input
+                        id="roleCode"
+                        type="text"
+                        maxlength="80"
+                        placeholder="Ej. MEDICO"
+                        required
+                    >
+
+                    <small
+                        id="roleCodeValidation"
+                        class="enterprise-field-message"
+                    ></small>
+
+                </div>
+
+                <div class="enterprise-field">
+
+                    <label for="roleName">
+                        Nombre
+                        <span class="enterprise-required">*</span>
+                    </label>
+
+                    <input
+                        id="roleName"
+                        type="text"
+                        maxlength="120"
+                        placeholder="Ej. Médico deportivo"
+                        required
+                    >
+
+                    <small
+                        id="roleNameValidation"
+                        class="enterprise-field-message"
+                    ></small>
+
+                </div>
+
+                <div class="enterprise-field full">
+
+                    <label for="roleDescription">
+                        Descripción
+                    </label>
+
+                    <textarea
+                        id="roleDescription"
+                        maxlength="500"
+                        placeholder="Responsabilidades y alcance general del rol"
+                    ></textarea>
+
+                </div>
+
+                <div class="enterprise-field full">
+
+                    <label class="switch-row">
+
+                        <input
+                            id="roleActive"
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span>
+                            Rol activo
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div
+                id="roleFormMessage"
+                class="form-message"
+                role="alert"
+            ></div>
+
+            <div class="modal-actions">
+
+                <button
+                    id="cancelRoleButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    id="saveRoleButton"
+                    class="enterprise-button primary"
+                    type="submit"
+                >
+                    Guardar rol
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+<script src="/js/identity.js?v=17"></script>
+
+</body>
+</html>

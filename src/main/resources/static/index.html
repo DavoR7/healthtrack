@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SMARTGYM Health Track</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">SG</div>
+
+            <div>
+                <h1>SMARTGYM</h1>
+                <span>Health Track</span>
+            </div>
+        </div>
+
+                <nav class="navigation">
+
+            <a href="/index.html" class="nav-item active">
+                <span class="nav-icon">&#8962;</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+
+            <a href="/identity.html" class="nav-item">
+                <span class="nav-icon">&#128100;</span>
+                <span class="nav-label">Identidad</span>
+            </a>
+
+            <a href="/members.html" class="nav-item">
+                <span class="nav-icon">&#127939;</span>
+                <span class="nav-label">Deportistas</span>
+            </a>
+
+            <a href="/health-records.html" class="nav-item">
+                <span class="nav-icon">&#9829;</span>
+                <span class="nav-label">Expediente Clínico</span>
+            </a>
+
+            <a href="/physical-assessments.html" class="nav-item">
+                <span class="nav-icon">&#128170;</span>
+                <span class="nav-label">Evaluación Física</span>
+            </a>
+
+            <a href="/training-routines.html" class="nav-item">
+                <span class="nav-icon">&#127942;</span>
+                <span class="nav-label">Rutinas</span>
+            </a>
+
+            <a href="/nutrition.html" class="nav-item">
+                <span class="nav-icon">&#9673;</span>
+                <span class="nav-label">Nutrición</span>
+            </a>
+
+            <a href="/analytics.html" class="nav-item">
+                <span class="nav-icon">&#128200;</span>
+                <span class="nav-label">Analítica</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <span>SMARTGYM</span>
+            <small>Versión 1.0.0</small>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">Panel administrativo</p>
+                <h2>Identidad y acceso</h2>
+            </div>
+
+            <div class="user-area">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    Sistema activo
+                </div>
+
+                <div class="avatar">
+                    AC
+                </div>
+            </div>
+
+        </header>
+
+        <section class="hero">
+
+            <div>
+                <p class="eyebrow">SMARTGYM Health Track</p>
+
+                <h3>Gestión segura de usuarios y roles</h3>
+
+                <p>
+                    Administra los perfiles que tendrán acceso al
+                    ecosistema deportivo, clínico y tecnológico.
+                </p>
+            </div>
+
+            <div class="hero-badge">
+                <span id="role-count">0</span>
+                <small>roles registrados</small>
+            </div>
+
+        </section>
+
+        <section class="stats-grid">
+
+            <article class="stat-card">
+                <span class="stat-label">Roles activos</span>
+                <strong id="active-role-count">0</strong>
+                <small>Perfiles habilitados</small>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-label">Estado API</span>
+                <strong id="api-status">Verificando</strong>
+                <small>Conexión con Spring Boot</small>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-label">Base de datos</span>
+                <strong>PostgreSQL</strong>
+                <small>Administrada con Flyway</small>
+            </article>
+
+        </section>
+
+        <section class="content-card">
+
+            <div class="section-header">
+
+                <div>
+                    <p class="eyebrow">Módulo Identity</p>
+                    <h3>Roles del sistema</h3>
+                </div>
+
+                <button
+                    id="open-role-modal"
+                    class="primary-button"
+                    type="button"
+                >
+                    + Nuevo rol
+                </button>
+
+            </div>
+
+            <div id="loading-message" class="loading-message">
+                Cargando roles desde PostgreSQL...
+            </div>
+
+            <div id="roles-grid" class="roles-grid"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div id="role-modal" class="modal hidden">
+
+    <div class="modal-overlay" id="close-modal-overlay"></div>
+
+    <section class="modal-content">
+
+        <div class="modal-header">
+            <div>
+                <p class="eyebrow">Módulo Identity</p>
+                <h3 id="modal-title">Nuevo rol</h3>
+            </div>
+
+            <button
+                id="close-role-modal"
+                class="icon-button"
+                type="button"
+            >
+                ×
+            </button>
+        </div>
+
+        <form id="role-form">
+
+            <input id="role-id" type="hidden">
+
+            <div class="form-group">
+                <label for="role-code">Código</label>
+                <input
+                    id="role-code"
+                    type="text"
+                    placeholder="ROLE_MANAGER"
+                    maxlength="50"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="role-name">Nombre</label>
+                <input
+                    id="role-name"
+                    type="text"
+                    placeholder="Gestor"
+                    maxlength="100"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="role-description">
+                    Descripción
+                </label>
+
+                <textarea
+                    id="role-description"
+                    rows="4"
+                    maxlength="255"
+                    placeholder="Describe las responsabilidades del rol"
+                ></textarea>
+            </div>
+
+            <label class="switch-row">
+                <input id="role-active" type="checkbox" checked>
+                <span>Rol activo</span>
+            </label>
+
+            <div id="form-message" class="form-message"></div>
+
+            <div class="modal-actions">
+                <button
+                    id="cancel-role"
+                    class="secondary-button"
+                    type="button"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                >
+                    Guardar rol
+                </button>
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+<script src="/js/app.js"></script>
+
+</body>
+</html>

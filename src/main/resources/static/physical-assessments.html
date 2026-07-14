@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Evaluación Física | SMARTGYM Health Track</title>
+
+    <link rel="stylesheet" href="/css/styles.css?v=19">
+    <link rel="stylesheet" href="/css/enterprise.css?v=12">
+    <link rel="stylesheet" href="/css/physical-assessments.css?v=12">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">SG</div>
+
+            <div>
+                <h1>SMARTGYM</h1>
+                <span>Health Track</span>
+            </div>
+        </div>
+
+                <nav class="navigation">
+
+            <a href="/index.html" class="nav-item">
+                <span class="nav-icon">&#8962;</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+
+            <a href="/identity.html" class="nav-item">
+                <span class="nav-icon">&#128100;</span>
+                <span class="nav-label">Identidad</span>
+            </a>
+
+            <a href="/members.html" class="nav-item">
+                <span class="nav-icon">&#127939;</span>
+                <span class="nav-label">Deportistas</span>
+            </a>
+
+            <a href="/health-records.html" class="nav-item">
+                <span class="nav-icon">&#9829;</span>
+                <span class="nav-label">Expediente Clínico</span>
+            </a>
+
+            <a href="/physical-assessments.html" class="nav-item active">
+                <span class="nav-icon">&#128170;</span>
+                <span class="nav-label">Evaluación Física</span>
+            </a>
+
+            <a href="/training-routines.html" class="nav-item">
+                <span class="nav-icon">&#127942;</span>
+                <span class="nav-label">Rutinas</span>
+            </a>
+
+            <a href="/nutrition.html" class="nav-item">
+                <span class="nav-icon">&#9673;</span>
+                <span class="nav-label">Nutrición</span>
+            </a>
+
+            <a href="/analytics.html" class="nav-item">
+                <span class="nav-icon">&#128200;</span>
+                <span class="nav-label">Analítica</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <strong>SMARTGYM</strong>
+            <small>Versión 1.0.0</small>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">
+                    Rendimiento y condición física
+                </p>
+
+                <h2>
+                    Evaluaciones Físicas
+                </h2>
+            </div>
+
+            <div class="user-area">
+
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    Sistema activo
+                </div>
+
+                <div class="avatar">
+                    AC
+                </div>
+
+            </div>
+
+        </header>
+
+        <section class="assessment-hero">
+
+            <div>
+                <p class="eyebrow">
+                    SMARTGYM Health Track
+                </p>
+
+                <h3>
+                    Seguimiento integral del rendimiento físico
+                </h3>
+
+                <p>
+                    Registra composición corporal, signos vitales,
+                    indicadores antropométricos y evolución histórica
+                    de cada deportista.
+                </p>
+            </div>
+
+            <div class="assessment-hero-badge">
+
+                <strong id="heroAssessmentCount">
+                    0
+                </strong>
+
+                <span>
+                    evaluaciones registradas
+                </span>
+
+            </div>
+
+        </section>
+
+        <section class="enterprise-kpi-grid">
+
+            <article class="enterprise-kpi">
+
+                <span class="enterprise-kpi-label">
+                    Evaluaciones
+                </span>
+
+                <strong
+                    id="totalAssessmentsCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Registros históricos
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi success">
+
+                <span class="enterprise-kpi-label">
+                    IMC normal
+                </span>
+
+                <strong
+                    id="normalBmiCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Evaluaciones en rango normal
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi gold">
+
+                <span class="enterprise-kpi-label">
+                    Peso promedio
+                </span>
+
+                <strong
+                    id="averageWeightValue"
+                    class="enterprise-kpi-value"
+                >
+                    —
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Kilogramos registrados
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi info">
+
+                <span class="enterprise-kpi-label">
+                    Oxigenación promedio
+                </span>
+
+                <strong
+                    id="averageOxygenValue"
+                    class="enterprise-kpi-value"
+                >
+                    —
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Saturación de oxígeno
+                </span>
+
+            </article>
+
+        </section>
+
+        <section class="content-card assessment-directory">
+
+            <div class="enterprise-page-header">
+
+                <div class="enterprise-page-title">
+
+                    <p class="eyebrow">
+                        Historial físico
+                    </p>
+
+                    <h3>
+                        Evaluaciones registradas
+                    </h3>
+
+                    <p class="enterprise-page-subtitle">
+                        Consulta, filtra y administra las evaluaciones
+                        físicas de los deportistas.
+                    </p>
+
+                </div>
+
+                <button
+                    id="newAssessmentButton"
+                    class="enterprise-button primary"
+                    type="button"
+                >
+                    + Nueva evaluación
+                </button>
+
+            </div>
+
+            <div class="enterprise-toolbar">
+
+                <div class="enterprise-search">
+
+                    <input
+                        id="assessmentSearchInput"
+                        type="search"
+                        placeholder="Buscar por nombre o identificación"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+                <div class="enterprise-filter">
+
+                    <label for="assessmentMemberFilter">
+                        Deportista
+                    </label>
+
+                    <select id="assessmentMemberFilter">
+                        <option value="all">
+                            Todos
+                        </option>
+                    </select>
+
+                </div>
+
+                <button
+                    id="refreshAssessmentsButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Actualizar
+                </button>
+
+            </div>
+
+            <div
+                id="assessmentsLoading"
+                class="assessment-loading"
+            >
+                Cargando evaluaciones...
+            </div>
+
+            <div
+                id="assessmentsError"
+                class="error-message hidden"
+            ></div>
+
+            <div class="enterprise-table-container">
+
+                <div class="enterprise-table-scroll">
+
+                    <table class="enterprise-table">
+
+                        <thead>
+                            <tr>
+                                <th>Deportista</th>
+                                <th>Fecha</th>
+                                <th>Peso</th>
+                                <th>Estatura</th>
+                                <th>IMC</th>
+                                <th>Presión</th>
+                                <th>Oxígeno</th>
+                                <th>Estado</th>
+                                <th class="actions-cell">
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="assessmentsTableBody">
+
+                            <tr>
+                                <td colspan="9">
+                                    Cargando evaluaciones...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section
+            id="assessmentDetailSection"
+            class="assessment-detail hidden"
+        >
+
+            <aside class="assessment-member-card">
+
+                <div
+                    id="assessmentProfileAvatar"
+                    class="assessment-profile-avatar"
+                >
+                    SG
+                </div>
+
+                <h3 id="assessmentProfileName">
+                    Deportista
+                </h3>
+
+                <p id="assessmentProfileIdentification">
+                    Sin identificación
+                </p>
+
+                <div class="assessment-profile-data">
+
+                    <div>
+                        <span>Fecha evaluación</span>
+                        <strong id="assessmentProfileDate">
+                            —
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Clasificación IMC</span>
+                        <strong id="assessmentProfileBmiClassification">
+                            No calculado
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Estado</span>
+
+                        <strong
+                            id="assessmentProfileStatus"
+                            class="enterprise-badge active"
+                        >
+                            Activo
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="assessment-profile-actions">
+
+                    <button
+                        id="editAssessmentButton"
+                        class="enterprise-button primary"
+                        type="button"
+                    >
+                        Editar evaluación
+                    </button>
+
+                    <button
+                        id="deactivateAssessmentButton"
+                        class="enterprise-button danger"
+                        type="button"
+                    >
+                        Desactivar
+                    </button>
+
+                    <button
+                        id="printAssessmentButton"
+                        class="enterprise-button secondary"
+                        type="button"
+                    >
+                        Imprimir ficha
+                    </button>
+
+                </div>
+
+            </aside>
+
+            <div class="assessment-metrics-grid">
+
+                <article class="assessment-metric-card">
+
+                    <span>Peso</span>
+
+                    <strong id="detailWeight">
+                        —
+                    </strong>
+
+                    <small>kg</small>
+
+                </article>
+
+                <article class="assessment-metric-card">
+
+                    <span>Estatura</span>
+
+                    <strong id="detailHeight">
+                        —
+                    </strong>
+
+                    <small>cm</small>
+
+                </article>
+
+                <article class="assessment-metric-card emphasized">
+
+                    <span>IMC</span>
+
+                    <strong id="detailBmi">
+                        —
+                    </strong>
+
+                    <small id="detailBmiClassification">
+                        No calculado
+                    </small>
+
+                </article>
+
+                <article class="assessment-metric-card">
+
+                    <span>Grasa corporal</span>
+
+                    <strong id="detailBodyFat">
+                        —
+                    </strong>
+
+                    <small>%</small>
+
+                </article>
+
+                <article class="assessment-metric-card">
+
+                    <span>Masa muscular</span>
+
+                    <strong id="detailMuscleMass">
+                        —
+                    </strong>
+
+                    <small>kg</small>
+
+                </article>
+
+                <article class="assessment-metric-card">
+
+                    <span>Cintura</span>
+
+                    <strong id="detailWaist">
+                        —
+                    </strong>
+
+                    <small>cm</small>
+
+                </article>
+
+                <article class="assessment-metric-card">
+
+                    <span>Frecuencia cardíaca</span>
+
+                    <strong id="detailHeartRate">
+                        —
+                    </strong>
+
+                    <small>lpm</small>
+
+                </article>
+
+                <article class="assessment-metric-card">
+
+                    <span>Presión arterial</span>
+
+                    <strong id="detailBloodPressure">
+                        —
+                    </strong>
+
+                    <small>mmHg</small>
+
+                </article>
+
+                <article class="assessment-metric-card">
+
+                    <span>Saturación de oxígeno</span>
+
+                    <strong id="detailOxygen">
+                        —
+                    </strong>
+
+                    <small>%</small>
+
+                </article>
+
+                <article class="assessment-observations-card">
+
+                    <h4>
+                        Observaciones
+                    </h4>
+
+                    <p id="detailObservations">
+                        Sin observaciones registradas.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div
+    id="assessmentModal"
+    class="modal hidden"
+>
+
+    <div
+        id="assessmentModalOverlay"
+        class="modal-overlay"
+    ></div>
+
+    <section class="modal-content assessment-modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <p class="eyebrow">
+                    Evaluación física
+                </p>
+
+                <h3 id="assessmentModalTitle">
+                    Nueva evaluación
+                </h3>
+            </div>
+
+            <button
+                id="closeAssessmentModalButton"
+                class="icon-button"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form
+            id="assessmentForm"
+            novalidate
+        >
+
+            <input
+                id="assessmentId"
+                type="hidden"
+            >
+
+            <div class="enterprise-form-section">
+
+                <div class="enterprise-form-section-title">
+                    Deportista y fecha
+                </div>
+
+                <div class="enterprise-form-grid">
+
+                    <div class="enterprise-field full">
+
+                        <label for="assessmentMemberId">
+                            Deportista
+                            <span class="enterprise-required">*</span>
+                        </label>
+
+                        <select
+                            id="assessmentMemberId"
+                            name="memberId"
+                            required
+                        >
+                            <option value="">
+                                Seleccione un deportista
+                            </option>
+                        </select>
+
+                        <small
+                            id="assessmentMemberValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="assessmentDate">
+                            Fecha de evaluación
+                        </label>
+
+                        <input
+                            id="assessmentDate"
+                            name="assessmentDate"
+                            type="date"
+                        >
+
+                        <small
+                            id="assessmentDateValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label>
+                            Estado
+                        </label>
+
+                        <label class="switch-row">
+
+                            <input
+                                id="assessmentActive"
+                                name="active"
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span>
+                                Evaluación activa
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="enterprise-form-section">
+
+                <div class="enterprise-form-section-title">
+                    Composición corporal
+                </div>
+
+                <div class="enterprise-form-grid">
+
+                    <div class="enterprise-field">
+
+                        <label for="weightKg">
+                            Peso (kg)
+                        </label>
+
+                        <input
+                            id="weightKg"
+                            name="weightKg"
+                            type="number"
+                            min="1"
+                            max="500"
+                            step="0.01"
+                        >
+
+                        <small
+                            id="weightValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="heightCm">
+                            Estatura (cm)
+                        </label>
+
+                        <input
+                            id="heightCm"
+                            name="heightCm"
+                            type="number"
+                            min="30"
+                            max="300"
+                            step="0.01"
+                        >
+
+                        <small
+                            id="heightValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="calculatedBmi">
+                            IMC calculado
+                        </label>
+
+                        <input
+                            id="calculatedBmi"
+                            type="text"
+                            readonly
+                            placeholder="Se calculará automáticamente"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="bodyFatPercentage">
+                            Grasa corporal (%)
+                        </label>
+
+                        <input
+                            id="bodyFatPercentage"
+                            name="bodyFatPercentage"
+                            type="number"
+                            min="0"
+                            max="100"
+                            step="0.01"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="muscleMassKg">
+                            Masa muscular (kg)
+                        </label>
+
+                        <input
+                            id="muscleMassKg"
+                            name="muscleMassKg"
+                            type="number"
+                            min="0"
+                            max="500"
+                            step="0.01"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="waistCircumferenceCm">
+                            Circunferencia cintura (cm)
+                        </label>
+
+                        <input
+                            id="waistCircumferenceCm"
+                            name="waistCircumferenceCm"
+                            type="number"
+                            min="1"
+                            max="300"
+                            step="0.01"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="enterprise-form-section">
+
+                <div class="enterprise-form-section-title">
+                    Signos vitales
+                </div>
+
+                <div class="enterprise-form-grid">
+
+                    <div class="enterprise-field">
+
+                        <label for="restingHeartRate">
+                            Frecuencia cardíaca
+                        </label>
+
+                        <input
+                            id="restingHeartRate"
+                            name="restingHeartRate"
+                            type="number"
+                            min="1"
+                            max="250"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="systolicPressure">
+                            Presión sistólica
+                        </label>
+
+                        <input
+                            id="systolicPressure"
+                            name="systolicPressure"
+                            type="number"
+                            min="1"
+                            max="300"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="diastolicPressure">
+                            Presión diastólica
+                        </label>
+
+                        <input
+                            id="diastolicPressure"
+                            name="diastolicPressure"
+                            type="number"
+                            min="1"
+                            max="200"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="oxygenSaturation">
+                            Saturación de oxígeno (%)
+                        </label>
+
+                        <input
+                            id="oxygenSaturation"
+                            name="oxygenSaturation"
+                            type="number"
+                            min="0"
+                            max="100"
+                            step="0.01"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field full">
+
+                        <label for="assessmentObservations">
+                            Observaciones
+                        </label>
+
+                        <textarea
+                            id="assessmentObservations"
+                            name="observations"
+                            maxlength="5000"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                id="assessmentFormMessage"
+                class="form-message"
+            ></div>
+
+            <div class="modal-actions">
+
+                <button
+                    id="cancelAssessmentButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    id="saveAssessmentButton"
+                    class="enterprise-button primary"
+                    type="submit"
+                >
+                    Guardar evaluación
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+<script src="/js/physical-assessments.js?v=12"></script>
+
+</body>
+</html>

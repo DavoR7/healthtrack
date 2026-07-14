@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Gestión de planes nutricionales de SMARTGYM Health Track"
+    >
+
+    <title>Nutrición Deportiva | SMARTGYM Health Track</title>
+
+    <link rel="stylesheet" href="/css/styles.css?v=19">
+    <link rel="stylesheet" href="/css/enterprise.css?v=16">
+    <link rel="stylesheet" href="/css/nutrition.css?v=16">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">SG</div>
+
+            <div>
+                <h1>SMARTGYM</h1>
+                <span>Health Track</span>
+            </div>
+        </div>
+
+                <nav class="navigation">
+
+            <a href="/index.html" class="nav-item">
+                <span class="nav-icon">&#8962;</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+
+            <a href="/identity.html" class="nav-item">
+                <span class="nav-icon">&#128100;</span>
+                <span class="nav-label">Identidad</span>
+            </a>
+
+            <a href="/members.html" class="nav-item">
+                <span class="nav-icon">&#127939;</span>
+                <span class="nav-label">Deportistas</span>
+            </a>
+
+            <a href="/health-records.html" class="nav-item">
+                <span class="nav-icon">&#9829;</span>
+                <span class="nav-label">Expediente Clínico</span>
+            </a>
+
+            <a href="/physical-assessments.html" class="nav-item">
+                <span class="nav-icon">&#128170;</span>
+                <span class="nav-label">Evaluación Física</span>
+            </a>
+
+            <a href="/training-routines.html" class="nav-item">
+                <span class="nav-icon">&#127942;</span>
+                <span class="nav-label">Rutinas</span>
+            </a>
+
+            <a href="/nutrition.html" class="nav-item active">
+                <span class="nav-icon">&#9673;</span>
+                <span class="nav-label">Nutrición</span>
+            </a>
+
+            <a href="/analytics.html" class="nav-item">
+                <span class="nav-icon">&#128200;</span>
+                <span class="nav-label">Analítica</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <strong>SMARTGYM</strong>
+            <small>Versión 1.0.0</small>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">
+                    Planificación nutricional
+                </p>
+
+                <h2>
+                    Nutrición Deportiva
+                </h2>
+            </div>
+
+            <div class="user-area">
+
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    Sistema activo
+                </div>
+
+                <div class="avatar">AC</div>
+
+            </div>
+
+        </header>
+
+        <section class="nutrition-hero">
+
+            <div>
+
+                <p class="eyebrow">
+                    SMARTGYM Health Track
+                </p>
+
+                <h3>
+                    Planificación alimentaria personalizada
+                </h3>
+
+                <p>
+                    Administra calorías, macronutrientes, hidratación,
+                    distribución diaria de comidas y objetivos nutricionales
+                    para cada deportista.
+                </p>
+
+            </div>
+
+            <div class="nutrition-hero-badge">
+
+                <strong id="heroPlanCount">
+                    0
+                </strong>
+
+                <span>
+                    planes registrados
+                </span>
+
+            </div>
+
+        </section>
+
+        <section class="enterprise-kpi-grid">
+
+            <article class="enterprise-kpi">
+
+                <span class="enterprise-kpi-label">
+                    Planes
+                </span>
+
+                <strong
+                    id="totalPlansCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Registros nutricionales
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi success">
+
+                <span class="enterprise-kpi-label">
+                    Activos
+                </span>
+
+                <strong
+                    id="activePlansCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Planes habilitados
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi gold">
+
+                <span class="enterprise-kpi-label">
+                    Calorías promedio
+                </span>
+
+                <strong
+                    id="averageCaloriesValue"
+                    class="enterprise-kpi-value"
+                >
+                    —
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Objetivo energético diario
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi info">
+
+                <span class="enterprise-kpi-label">
+                    Hidratación promedio
+                </span>
+
+                <strong
+                    id="averageWaterValue"
+                    class="enterprise-kpi-value"
+                >
+                    —
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Litros diarios
+                </span>
+
+            </article>
+
+        </section>
+
+        <section class="content-card nutrition-directory">
+
+            <div class="enterprise-page-header">
+
+                <div class="enterprise-page-title">
+
+                    <p class="eyebrow">
+                        Planificación alimentaria
+                    </p>
+
+                    <h3>
+                        Planes nutricionales
+                    </h3>
+
+                    <p class="enterprise-page-subtitle">
+                        Consulta y administra los planes alimentarios
+                        asignados a cada deportista.
+                    </p>
+
+                </div>
+
+                <button
+                    id="newNutritionPlanButton"
+                    class="enterprise-button primary"
+                    type="button"
+                >
+                    + Nuevo plan
+                </button>
+
+            </div>
+
+            <div class="enterprise-toolbar nutrition-toolbar">
+
+                <div class="enterprise-search">
+
+                    <input
+                        id="nutritionSearchInput"
+                        type="search"
+                        placeholder="Buscar plan, objetivo, deportista o identificación"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+                <div class="enterprise-filter">
+
+                    <label for="nutritionMemberFilter">
+                        Deportista
+                    </label>
+
+                    <select id="nutritionMemberFilter">
+                        <option value="all">Todos</option>
+                    </select>
+
+                </div>
+
+                <div class="enterprise-filter">
+
+                    <label for="nutritionStatusFilter">
+                        Estado
+                    </label>
+
+                    <select id="nutritionStatusFilter">
+                        <option value="all">Todos</option>
+                        <option value="active">Activos</option>
+                        <option value="inactive">Inactivos</option>
+                    </select>
+
+                </div>
+
+                <button
+                    id="refreshNutritionPlansButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Actualizar
+                </button>
+
+            </div>
+
+            <div
+                id="nutritionLoading"
+                class="nutrition-loading"
+            >
+                Cargando planes nutricionales...
+            </div>
+
+            <div
+                id="nutritionError"
+                class="error-message hidden"
+                role="alert"
+            ></div>
+
+            <div
+                id="nutritionPlansEmpty"
+                class="enterprise-empty hidden"
+            >
+                <div class="enterprise-empty-icon">NU</div>
+
+                <h4>No existen planes nutricionales</h4>
+
+                <p>
+                    Registra el primer plan mediante
+                    el botón “Nuevo plan”.
+                </p>
+            </div>
+
+            <div
+                id="nutritionPlansGrid"
+                class="nutrition-plans-grid"
+            ></div>
+
+        </section>
+
+        <section
+            id="nutritionDetailSection"
+            class="nutrition-detail hidden"
+        >
+
+            <aside class="nutrition-summary-card">
+
+                <div
+                    id="nutritionProfileAvatar"
+                    class="nutrition-profile-avatar"
+                >
+                    NU
+                </div>
+
+                <p class="eyebrow">
+                    Plan seleccionado
+                </p>
+
+                <h3 id="nutritionDetailName">
+                    Plan nutricional
+                </h3>
+
+                <p id="nutritionDetailMember">
+                    Deportista
+                </p>
+
+                <div class="nutrition-summary-badges">
+
+                    <span
+                        id="nutritionDetailCaloriesBadge"
+                        class="nutrition-calorie-badge"
+                    >
+                        0 kcal
+                    </span>
+
+                    <span
+                        id="nutritionDetailStatus"
+                        class="enterprise-badge active"
+                    >
+                        Activo
+                    </span>
+
+                </div>
+
+                <div class="nutrition-summary-data">
+
+                    <div>
+                        <span>Objetivo</span>
+
+                        <strong id="nutritionDetailObjective">
+                            Sin objetivo registrado
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Periodo</span>
+
+                        <strong id="nutritionDetailDates">
+                            —
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Comidas</span>
+
+                        <strong id="nutritionDetailMealCount">
+                            0
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Calorías en comidas</span>
+
+                        <strong id="nutritionDetailMealCalories">
+                            0 kcal
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="nutrition-summary-actions">
+
+                    <button
+                        id="editNutritionPlanButton"
+                        class="enterprise-button primary"
+                        type="button"
+                    >
+                        Editar plan
+                    </button>
+
+                    <button
+                        id="duplicateNutritionPlanButton"
+                        class="enterprise-button gold"
+                        type="button"
+                    >
+                        Duplicar plan
+                    </button>
+
+                    <button
+                        id="deactivateNutritionPlanButton"
+                        class="enterprise-button danger"
+                        type="button"
+                    >
+                        Desactivar
+                    </button>
+
+                    <button
+                        id="printNutritionPlanButton"
+                        class="enterprise-button secondary"
+                        type="button"
+                    >
+                        Imprimir
+                    </button>
+
+                </div>
+
+            </aside>
+
+            <div class="nutrition-content">
+
+                <section class="nutrition-macros-grid">
+
+                    <article class="nutrition-macro-card calories">
+                        <span>Calorías diarias</span>
+                        <strong id="detailDailyCalories">—</strong>
+                        <small>kcal</small>
+                    </article>
+
+                    <article class="nutrition-macro-card protein">
+                        <span>Proteínas</span>
+                        <strong id="detailProtein">—</strong>
+                        <small>gramos</small>
+                    </article>
+
+                    <article class="nutrition-macro-card carbs">
+                        <span>Carbohidratos</span>
+                        <strong id="detailCarbohydrates">—</strong>
+                        <small>gramos</small>
+                    </article>
+
+                    <article class="nutrition-macro-card fats">
+                        <span>Grasas</span>
+                        <strong id="detailFat">—</strong>
+                        <small>gramos</small>
+                    </article>
+
+                    <article class="nutrition-macro-card water">
+                        <span>Hidratación</span>
+                        <strong id="detailWater">—</strong>
+                        <small>litros diarios</small>
+                    </article>
+
+                </section>
+
+                <section class="nutrition-meals-panel">
+
+                    <div class="nutrition-section-header">
+
+                        <div>
+                            <p class="eyebrow">
+                                Distribución diaria
+                            </p>
+
+                            <h3>
+                                Comidas del plan
+                            </h3>
+                        </div>
+
+                        <span
+                            id="nutritionMealBadge"
+                            class="enterprise-badge premium"
+                        >
+                            0 comidas
+                        </span>
+
+                    </div>
+
+                    <div
+                        id="nutritionMealsList"
+                        class="nutrition-meals-list"
+                    ></div>
+
+                    <div
+                        id="nutritionMealsEmpty"
+                        class="enterprise-empty hidden"
+                    >
+                        <div class="enterprise-empty-icon">CO</div>
+
+                        <h4>Plan sin comidas</h4>
+
+                        <p>
+                            Edita el plan para agregar
+                            la distribución diaria de alimentos.
+                        </p>
+                    </div>
+
+                </section>
+
+                <section class="nutrition-observations-card">
+
+                    <p class="eyebrow">
+                        Indicaciones
+                    </p>
+
+                    <h3>
+                        Observaciones nutricionales
+                    </h3>
+
+                    <p id="nutritionDetailObservations">
+                        Sin observaciones registradas.
+                    </p>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div
+    id="nutritionModal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="nutritionModalTitle"
+>
+
+    <div
+        id="nutritionModalOverlay"
+        class="modal-overlay"
+    ></div>
+
+    <section class="modal-content nutrition-modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <p class="eyebrow">
+                    Planificación nutricional
+                </p>
+
+                <h3 id="nutritionModalTitle">
+                    Nuevo plan nutricional
+                </h3>
+            </div>
+
+            <button
+                id="closeNutritionModalButton"
+                class="icon-button"
+                type="button"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form
+            id="nutritionForm"
+            novalidate
+        >
+
+            <input
+                id="nutritionPlanId"
+                type="hidden"
+            >
+
+            <div class="enterprise-form-section">
+
+                <div class="enterprise-form-section-title">
+                    Información general
+                </div>
+
+                <div class="enterprise-form-grid">
+
+                    <div class="enterprise-field full">
+
+                        <label for="nutritionMemberId">
+                            Deportista
+                            <span class="enterprise-required">*</span>
+                        </label>
+
+                        <select
+                            id="nutritionMemberId"
+                            required
+                        >
+                            <option value="">
+                                Seleccione un deportista
+                            </option>
+                        </select>
+
+                        <small
+                            id="nutritionMemberValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="nutritionPlanName">
+                            Nombre del plan
+                            <span class="enterprise-required">*</span>
+                        </label>
+
+                        <input
+                            id="nutritionPlanName"
+                            type="text"
+                            maxlength="150"
+                            placeholder="Ej. Plan de acondicionamiento"
+                            required
+                        >
+
+                        <small
+                            id="nutritionNameValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="nutritionDailyCalories">
+                            Calorías diarias
+                        </label>
+
+                        <input
+                            id="nutritionDailyCalories"
+                            type="number"
+                            min="1"
+                            max="10000"
+                            placeholder="2100"
+                        >
+
+                        <small
+                            id="nutritionCaloriesValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field full">
+
+                        <label for="nutritionObjective">
+                            Objetivo
+                        </label>
+
+                        <input
+                            id="nutritionObjective"
+                            type="text"
+                            maxlength="250"
+                            placeholder="Objetivo principal del plan nutricional"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="nutritionStartDate">
+                            Fecha de inicio
+                        </label>
+
+                        <input
+                            id="nutritionStartDate"
+                            type="date"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="nutritionEndDate">
+                            Fecha de finalización
+                        </label>
+
+                        <input
+                            id="nutritionEndDate"
+                            type="date"
+                        >
+
+                        <small
+                            id="nutritionDateValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="enterprise-form-section">
+
+                <div class="enterprise-form-section-title">
+                    Objetivos de macronutrientes
+                </div>
+
+                <div class="enterprise-form-grid">
+
+                    <div class="enterprise-field">
+
+                        <label for="nutritionProtein">
+                            Proteínas (g)
+                        </label>
+
+                        <input
+                            id="nutritionProtein"
+                            type="number"
+                            min="0"
+                            max="2000"
+                            step="0.01"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="nutritionCarbohydrates">
+                            Carbohidratos (g)
+                        </label>
+
+                        <input
+                            id="nutritionCarbohydrates"
+                            type="number"
+                            min="0"
+                            max="3000"
+                            step="0.01"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="nutritionFat">
+                            Grasas (g)
+                        </label>
+
+                        <input
+                            id="nutritionFat"
+                            type="number"
+                            min="0"
+                            max="1000"
+                            step="0.01"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="nutritionWater">
+                            Agua diaria (litros)
+                        </label>
+
+                        <input
+                            id="nutritionWater"
+                            type="number"
+                            min="0"
+                            max="20"
+                            step="0.01"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field full">
+
+                        <div class="nutrition-calculation-preview">
+
+                            <span>
+                                Calorías estimadas por macronutrientes
+                            </span>
+
+                            <strong id="calculatedMacroCalories">
+                                0 kcal
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="enterprise-field full">
+
+                        <label for="nutritionObservations">
+                            Observaciones
+                        </label>
+
+                        <textarea
+                            id="nutritionObservations"
+                            maxlength="5000"
+                            placeholder="Indicaciones, restricciones y recomendaciones..."
+                        ></textarea>
+
+                    </div>
+
+                    <div class="enterprise-field full">
+
+                        <label class="switch-row">
+
+                            <input
+                                id="nutritionActive"
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span>
+                                Plan nutricional activo
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="enterprise-form-section">
+
+                <div class="nutrition-builder-header">
+
+                    <div>
+                        <div class="enterprise-form-section-title">
+                            Distribución de comidas
+                        </div>
+
+                        <p>
+                            Agrega las comidas que formarán
+                            parte del plan diario.
+                        </p>
+                    </div>
+
+                    <button
+                        id="addMealButton"
+                        class="enterprise-button secondary"
+                        type="button"
+                    >
+                        + Agregar comida
+                    </button>
+
+                </div>
+
+                <div
+                    id="mealBuilderList"
+                    class="meal-builder-list"
+                ></div>
+
+                <div
+                    id="mealBuilderEmpty"
+                    class="meal-builder-empty"
+                >
+                    El plan todavía no contiene comidas.
+                </div>
+
+            </div>
+
+            <div
+                id="nutritionFormMessage"
+                class="form-message"
+                role="alert"
+            ></div>
+
+            <div class="modal-actions">
+
+                <button
+                    id="cancelNutritionButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    id="saveNutritionButton"
+                    class="enterprise-button primary"
+                    type="submit"
+                >
+                    Guardar plan
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+<script src="/js/nutrition.js?v=16"></script>
+
+</body>
+</html>

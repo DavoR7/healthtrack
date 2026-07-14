@@ -1,0 +1,387 @@
+const API_URL = "/api/v1/members";
+
+const tableBody = document.getElementById("membersTableBody");
+const searchBox = document.getElementById("searchBox");
+
+const totalMembers = document.getElementById("totalMembers");
+const membersCounter = document.getElementById("membersCounter");
+
+const modal = document.getElementById("memberModal");
+const newMemberButton = document.getElementById("newMemberButton");
+const closeModalButton = document.getElementById("closeModal");
+const cancelButton = document.getElementById("cancelButton");
+const memberForm = document.getElementById("memberForm");
+
+let members = [];
+let editingMemberId = null;
+
+async function loadMembers() {
+    renderLoading();
+
+    try {
+        const response = await fetch(API_URL);
+
+        if (!response.ok) {
+            throw new Error(
+                `No se pudo cargar la información. HTTP ${response.status}`
+            );
+        }
+
+        members = await response.json();
+
+        updateCounters();
+        renderMembers(members);
+    } catch (error) {
+        console.error(error);
+
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="8" class="table-error">
+                    ${escapeHtml(error.message)}
+                </td>
+            </tr>
+        `;
+    }
+}
+
+function renderLoading() {
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="8">
+                Cargando deportistas...
+            </td>
+        </tr>
+    `;
+}
+
+function updateCounters() {
+    totalMembers.textContent = members.length;
+    membersCounter.textContent = members.length;
+}
+
+function renderMembers(data) {
+    if (data.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="8" class="empty-table">
+                    No existen deportistas registrados.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    tableBody.innerHTML = data
+        .map(member => createMemberRow(member))
+        .join("");
+}
+
+function createMemberRow(member) {
+    return `
+        <tr>
+            <td>${member.id}</td>
+
+            <td>
+                <strong>
+                    ${escapeHtml(member.identification)}
+                </strong>
+            </td>
+
+            <td>
+                <div class="member-name-cell">
+                    <span class="member-initials">
+                        ${escapeHtml(getInitials(member))}
+                    </span>
+
+                    <div>
+                        <strong>
+                            ${escapeHtml(member.fullName)}
+                        </strong>
+
+                        <small>
+                            ${escapeHtml(member.gender ?? "No especificado")}
+                        </small>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                ${escapeHtml(member.email ?? "Sin correo")}
+            </td>
+
+            <td>
+                ${escapeHtml(member.phone ?? "Sin teléfono")}
+            </td>
+
+            <td>
+                ${member.age ?? "—"}
+            </td>
+
+            <td>
+                <span class="member-status ${member.active ? "active" : "inactive"}">
+                    ${member.active ? "Activo" : "Inactivo"}
+                </span>
+            </td>
+
+            <td>
+                <div class="action-buttons">
+                    <button
+                        type="button"
+                        class="edit-button"
+                        onclick="editMember(${member.id})"
+                    >
+                        Editar
+                    </button>
+
+                    ${
+                        member.active
+                            ? `
+                                <button
+                                    type="button"
+                                    class="deactivate-button"
+                                    onclick="deactivateMember(${member.id})"
+                                >
+                                    Desactivar
+                                </button>
+                            `
+                            : ""
+                    }
+                </div>
+            </td>
+        </tr>
+    `;
+}
+
+function openCreateModal() {
+    editingMemberId = null;
+    memberForm.reset();
+    modal.classList.remove("hidden");
+}
+
+function closeMemberModal() {
+    editingMemberId = null;
+    memberForm.reset();
+    modal.classList.add("hidden");
+}
+
+async function editMember(id) {
+    try {
+        const response = await fetch(`${API_URL}/${id}`);
+
+        if (!response.ok) {
+            throw new Error("No se pudo cargar el deportista");
+        }
+
+        const member = await response.json();
+
+        editingMemberId = member.id;
+
+        memberForm.elements.identification.value =
+            member.identification ?? "";
+
+        memberForm.elements.firstName.value =
+            member.firstName ?? "";
+
+        memberForm.elements.lastName.value =
+            member.lastName ?? "";
+
+        memberForm.elements.email.value =
+            member.email ?? "";
+
+        memberForm.elements.phone.value =
+            member.phone ?? "";
+
+        memberForm.elements.birthDate.value =
+            member.birthDate ?? "";
+
+        modal.classList.remove("hidden");
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+async function saveMember(event) {
+    event.preventDefault();
+
+    const formData = new FormData(memberForm);
+
+    const payload = {
+        identification: formData.get("identification"),
+        firstName: formData.get("firstName"),
+        lastName: formData.get("lastName"),
+        email: emptyToNull(formData.get("email")),
+        phone: emptyToNull(formData.get("phone")),
+        birthDate: emptyToNull(formData.get("birthDate")),
+        active: true
+    };
+
+    const url = editingMemberId
+        ? `${API_URL}/${editingMemberId}`
+        : API_URL;
+
+    const method = editingMemberId
+        ? "PUT"
+        : "POST";
+
+    try {
+        const response = await fetch(url, {
+            method,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const body = await response
+            .json()
+            .catch(() => null);
+
+        if (!response.ok) {
+            throw new Error(
+                extractErrorMessage(body)
+            );
+        }
+
+        closeMemberModal();
+        await loadMembers();
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+async function deactivateMember(id) {
+    const confirmed = confirm(
+        "¿Deseas desactivar este deportista?"
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            `${API_URL}/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                "No se pudo desactivar el deportista"
+            );
+        }
+
+        await loadMembers();
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+function filterMembers() {
+    const searchTerm = searchBox.value
+        .trim()
+        .toLowerCase();
+
+    if (searchTerm === "") {
+        renderMembers(members);
+        return;
+    }
+
+    const filteredMembers = members.filter(member => {
+        const text = [
+            member.identification,
+            member.firstName,
+            member.lastName,
+            member.fullName,
+            member.email,
+            member.phone
+        ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
+        return text.includes(searchTerm);
+    });
+
+    renderMembers(filteredMembers);
+}
+
+function getInitials(member) {
+    const firstInitial =
+        member.firstName?.charAt(0) ?? "";
+
+    const lastInitial =
+        member.lastName?.charAt(0) ?? "";
+
+    return `${firstInitial}${lastInitial}`.toUpperCase();
+}
+
+function emptyToNull(value) {
+    if (value === null || value === undefined) {
+        return null;
+    }
+
+    const normalized = String(value).trim();
+
+    return normalized === ""
+        ? null
+        : normalized;
+}
+
+function extractErrorMessage(body) {
+    if (!body) {
+        return "No fue posible completar la operación";
+    }
+
+    if (body.message) {
+        return body.message;
+    }
+
+    if (body.validationErrors) {
+        return Object.values(
+            body.validationErrors
+        ).join(". ");
+    }
+
+    return "No fue posible completar la operación";
+}
+
+function escapeHtml(value) {
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+newMemberButton.addEventListener(
+    "click",
+    openCreateModal
+);
+
+closeModalButton.addEventListener(
+    "click",
+    closeMemberModal
+);
+
+cancelButton.addEventListener(
+    "click",
+    closeMemberModal
+);
+
+memberForm.addEventListener(
+    "submit",
+    saveMember
+);
+
+searchBox.addEventListener(
+    "input",
+    filterMembers
+);
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadMembers
+);

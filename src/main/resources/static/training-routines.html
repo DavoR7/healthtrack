@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Gestión de rutinas de entrenamiento de SMARTGYM Health Track"
+    >
+
+    <title>Rutinas de Entrenamiento | SMARTGYM Health Track</title>
+
+    <link rel="stylesheet" href="/css/styles.css?v=19">
+    <link rel="stylesheet" href="/css/enterprise.css?v=14">
+    <link rel="stylesheet" href="/css/training-routines.css?v=14">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">SG</div>
+
+            <div>
+                <h1>SMARTGYM</h1>
+                <span>Health Track</span>
+            </div>
+        </div>
+
+                <nav class="navigation">
+
+            <a href="/index.html" class="nav-item">
+                <span class="nav-icon">&#8962;</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+
+            <a href="/identity.html" class="nav-item">
+                <span class="nav-icon">&#128100;</span>
+                <span class="nav-label">Identidad</span>
+            </a>
+
+            <a href="/members.html" class="nav-item">
+                <span class="nav-icon">&#127939;</span>
+                <span class="nav-label">Deportistas</span>
+            </a>
+
+            <a href="/health-records.html" class="nav-item">
+                <span class="nav-icon">&#9829;</span>
+                <span class="nav-label">Expediente Clínico</span>
+            </a>
+
+            <a href="/physical-assessments.html" class="nav-item">
+                <span class="nav-icon">&#128170;</span>
+                <span class="nav-label">Evaluación Física</span>
+            </a>
+
+            <a href="/training-routines.html" class="nav-item active">
+                <span class="nav-icon">&#127942;</span>
+                <span class="nav-label">Rutinas</span>
+            </a>
+
+            <a href="/nutrition.html" class="nav-item">
+                <span class="nav-icon">&#9673;</span>
+                <span class="nav-label">Nutrición</span>
+            </a>
+
+            <a href="/analytics.html" class="nav-item">
+                <span class="nav-icon">&#128200;</span>
+                <span class="nav-label">Analítica</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <strong>SMARTGYM</strong>
+            <small>Versión 1.0.0</small>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">Planificación deportiva</p>
+                <h2>Rutinas de Entrenamiento</h2>
+            </div>
+
+            <div class="user-area">
+
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    Sistema activo
+                </div>
+
+                <div class="avatar">AC</div>
+
+            </div>
+
+        </header>
+
+        <section class="training-hero">
+
+            <div>
+                <p class="eyebrow">SMARTGYM Health Track</p>
+
+                <h3>
+                    Planificación integral del entrenamiento
+                </h3>
+
+                <p>
+                    Diseña rutinas personalizadas, administra ejercicios,
+                    cargas, series, repeticiones y tiempos de descanso,
+                    manteniendo el historial deportivo de cada deportista.
+                </p>
+            </div>
+
+            <div class="training-hero-badge">
+
+                <strong id="heroRoutineCount">0</strong>
+
+                <span>
+                    rutinas registradas
+                </span>
+
+            </div>
+
+        </section>
+
+        <section class="enterprise-kpi-grid">
+
+            <article class="enterprise-kpi">
+
+                <span class="enterprise-kpi-label">
+                    Rutinas
+                </span>
+
+                <strong
+                    id="totalRoutinesCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Planes registrados
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi success">
+
+                <span class="enterprise-kpi-label">
+                    Activas
+                </span>
+
+                <strong
+                    id="activeRoutinesCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Rutinas habilitadas
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi gold">
+
+                <span class="enterprise-kpi-label">
+                    Ejercicios
+                </span>
+
+                <strong
+                    id="totalExercisesCount"
+                    class="enterprise-kpi-value"
+                >
+                    0
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Ejercicios planificados
+                </span>
+
+            </article>
+
+            <article class="enterprise-kpi info">
+
+                <span class="enterprise-kpi-label">
+                    Duración promedio
+                </span>
+
+                <strong
+                    id="averageDurationValue"
+                    class="enterprise-kpi-value"
+                >
+                    —
+                </strong>
+
+                <span class="enterprise-kpi-description">
+                    Minutos por rutina
+                </span>
+
+            </article>
+
+        </section>
+
+        <section class="content-card training-directory">
+
+            <div class="enterprise-page-header">
+
+                <div class="enterprise-page-title">
+
+                    <p class="eyebrow">
+                        Planificación deportiva
+                    </p>
+
+                    <h3>
+                        Rutinas registradas
+                    </h3>
+
+                    <p class="enterprise-page-subtitle">
+                        Consulta, filtra, crea y administra los planes
+                        de entrenamiento de cada deportista.
+                    </p>
+
+                </div>
+
+                <button
+                    id="newRoutineButton"
+                    class="enterprise-button primary"
+                    type="button"
+                >
+                    + Nueva rutina
+                </button>
+
+            </div>
+
+            <div class="enterprise-toolbar training-toolbar">
+
+                <div class="enterprise-search">
+
+                    <input
+                        id="routineSearchInput"
+                        type="search"
+                        placeholder="Buscar por rutina, objetivo, deportista o identificación"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+                <div class="enterprise-filter">
+
+                    <label for="routineMemberFilter">
+                        Deportista
+                    </label>
+
+                    <select id="routineMemberFilter">
+                        <option value="all">
+                            Todos
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="enterprise-filter">
+
+                    <label for="routineStatusFilter">
+                        Estado
+                    </label>
+
+                    <select id="routineStatusFilter">
+                        <option value="all">Todos</option>
+                        <option value="active">Activas</option>
+                        <option value="inactive">Inactivas</option>
+                    </select>
+
+                </div>
+
+                <button
+                    id="refreshRoutinesButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Actualizar
+                </button>
+
+            </div>
+
+            <div
+                id="routinesLoading"
+                class="training-loading"
+            >
+                Cargando rutinas...
+            </div>
+
+            <div
+                id="routinesError"
+                class="error-message hidden"
+                role="alert"
+            ></div>
+
+            <div
+                id="routinesEmpty"
+                class="enterprise-empty hidden"
+            >
+
+                <div class="enterprise-empty-icon">
+                    RT
+                </div>
+
+                <h4>No existen rutinas</h4>
+
+                <p>
+                    Registra una nueva rutina mediante
+                    el botón “Nueva rutina”.
+                </p>
+
+            </div>
+
+            <div
+                id="routinesGrid"
+                class="training-routines-grid"
+            ></div>
+
+        </section>
+
+        <section
+            id="routineDetailSection"
+            class="routine-detail hidden"
+        >
+
+            <aside class="routine-summary-card">
+
+                <div
+                    id="routineProfileAvatar"
+                    class="routine-profile-avatar"
+                >
+                    RT
+                </div>
+
+                <p class="eyebrow">
+                    Rutina seleccionada
+                </p>
+
+                <h3 id="routineDetailName">
+                    Rutina
+                </h3>
+
+                <p id="routineDetailMember">
+                    Deportista
+                </p>
+
+                <div class="routine-summary-badges">
+
+                    <span
+                        id="routineDetailLevel"
+                        class="routine-level-badge"
+                    >
+                        Sin nivel
+                    </span>
+
+                    <span
+                        id="routineDetailStatus"
+                        class="enterprise-badge active"
+                    >
+                        Activa
+                    </span>
+
+                </div>
+
+                <div class="routine-summary-data">
+
+                    <div>
+                        <span>Objetivo</span>
+
+                        <strong id="routineDetailObjective">
+                            Sin objetivo registrado
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Periodo</span>
+
+                        <strong id="routineDetailDates">
+                            —
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Días por semana</span>
+
+                        <strong id="routineDetailDays">
+                            —
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Duración estimada</span>
+
+                        <strong id="routineDetailDuration">
+                            —
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Ejercicios</span>
+
+                        <strong id="routineDetailExerciseCount">
+                            0
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Series totales</span>
+
+                        <strong id="routineDetailTotalSets">
+                            0
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="routine-summary-actions">
+
+                    <button
+                        id="editRoutineButton"
+                        class="enterprise-button primary"
+                        type="button"
+                    >
+                        Editar rutina
+                    </button>
+
+                    <button
+                        id="duplicateRoutineButton"
+                        class="enterprise-button gold"
+                        type="button"
+                    >
+                        Duplicar rutina
+                    </button>
+
+                    <button
+                        id="deactivateRoutineButton"
+                        class="enterprise-button danger"
+                        type="button"
+                    >
+                        Desactivar
+                    </button>
+
+                    <button
+                        id="printRoutineButton"
+                        class="enterprise-button secondary"
+                        type="button"
+                    >
+                        Imprimir
+                    </button>
+
+                </div>
+
+            </aside>
+
+            <div class="routine-content">
+
+                <section class="routine-exercises-panel">
+
+                    <div class="routine-section-header">
+
+                        <div>
+                            <p class="eyebrow">
+                                Plan de ejercicios
+                            </p>
+
+                            <h3>
+                                Ejercicios de la rutina
+                            </h3>
+                        </div>
+
+                        <span
+                            id="routineExerciseBadge"
+                            class="enterprise-badge premium"
+                        >
+                            0 ejercicios
+                        </span>
+
+                    </div>
+
+                    <div
+                        id="routineExercisesList"
+                        class="routine-exercises-list"
+                    ></div>
+
+                    <div
+                        id="routineExercisesEmpty"
+                        class="enterprise-empty hidden"
+                    >
+
+                        <div class="enterprise-empty-icon">
+                            EX
+                        </div>
+
+                        <h4>Rutina sin ejercicios</h4>
+
+                        <p>
+                            Edita la rutina para agregar ejercicios.
+                        </p>
+
+                    </div>
+
+                </section>
+
+                <section class="routine-observations-card">
+
+                    <div>
+                        <p class="eyebrow">
+                            Indicaciones
+                        </p>
+
+                        <h3>
+                            Observaciones generales
+                        </h3>
+                    </div>
+
+                    <p id="routineDetailObservations">
+                        Sin observaciones registradas.
+                    </p>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<div
+    id="routineModal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="routineModalTitle"
+>
+
+    <div
+        id="routineModalOverlay"
+        class="modal-overlay"
+    ></div>
+
+    <section class="modal-content routine-modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <p class="eyebrow">
+                    Planificación deportiva
+                </p>
+
+                <h3 id="routineModalTitle">
+                    Nueva rutina
+                </h3>
+            </div>
+
+            <button
+                id="closeRoutineModalButton"
+                class="icon-button"
+                type="button"
+                aria-label="Cerrar formulario"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <form
+            id="routineForm"
+            novalidate
+        >
+
+            <input
+                id="routineId"
+                type="hidden"
+            >
+
+            <div class="enterprise-form-section">
+
+                <div class="enterprise-form-section-title">
+                    Información general
+                </div>
+
+                <div class="enterprise-form-grid">
+
+                    <div class="enterprise-field full">
+
+                        <label for="routineMemberId">
+                            Deportista
+                            <span class="enterprise-required">*</span>
+                        </label>
+
+                        <select
+                            id="routineMemberId"
+                            name="memberId"
+                            required
+                        >
+                            <option value="">
+                                Seleccione un deportista
+                            </option>
+                        </select>
+
+                        <small
+                            id="routineMemberValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="routineName">
+                            Nombre de la rutina
+                            <span class="enterprise-required">*</span>
+                        </label>
+
+                        <input
+                            id="routineName"
+                            name="name"
+                            type="text"
+                            maxlength="150"
+                            placeholder="Ej. Acondicionamiento general"
+                            required
+                        >
+
+                        <small
+                            id="routineNameValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="routineLevel">
+                            Nivel
+                        </label>
+
+                        <select
+                            id="routineLevel"
+                            name="level"
+                        >
+                            <option value="">
+                                Seleccione
+                            </option>
+
+                            <option value="INICIAL">
+                                Inicial
+                            </option>
+
+                            <option value="INTERMEDIO">
+                                Intermedio
+                            </option>
+
+                            <option value="AVANZADO">
+                                Avanzado
+                            </option>
+
+                            <option value="REHABILITACION">
+                                Rehabilitación
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="enterprise-field full">
+
+                        <label for="routineObjective">
+                            Objetivo
+                        </label>
+
+                        <input
+                            id="routineObjective"
+                            name="objective"
+                            type="text"
+                            maxlength="250"
+                            placeholder="Objetivo principal del plan de entrenamiento"
+                        >
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="routineStartDate">
+                            Fecha de inicio
+                        </label>
+
+                        <input
+                            id="routineStartDate"
+                            name="startDate"
+                            type="date"
+                        >
+
+                        <small
+                            id="routineStartDateValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="routineEndDate">
+                            Fecha de finalización
+                        </label>
+
+                        <input
+                            id="routineEndDate"
+                            name="endDate"
+                            type="date"
+                        >
+
+                        <small
+                            id="routineEndDateValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="routineDaysPerWeek">
+                            Días por semana
+                        </label>
+
+                        <input
+                            id="routineDaysPerWeek"
+                            name="daysPerWeek"
+                            type="number"
+                            min="1"
+                            max="7"
+                            placeholder="3"
+                        >
+
+                        <small
+                            id="routineDaysValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field">
+
+                        <label for="routineDuration">
+                            Duración estimada (min)
+                        </label>
+
+                        <input
+                            id="routineDuration"
+                            name="estimatedDurationMinutes"
+                            type="number"
+                            min="1"
+                            max="600"
+                            placeholder="60"
+                        >
+
+                        <small
+                            id="routineDurationValidation"
+                            class="enterprise-field-message"
+                        ></small>
+
+                    </div>
+
+                    <div class="enterprise-field full">
+
+                        <label for="routineObservations">
+                            Observaciones generales
+                        </label>
+
+                        <textarea
+                            id="routineObservations"
+                            name="observations"
+                            maxlength="5000"
+                            placeholder="Restricciones, indicaciones y recomendaciones..."
+                        ></textarea>
+
+                    </div>
+
+                    <div class="enterprise-field full">
+
+                        <label class="switch-row">
+
+                            <input
+                                id="routineActive"
+                                name="active"
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span>
+                                Rutina activa
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="enterprise-form-section">
+
+                <div class="routine-builder-header">
+
+                    <div>
+                        <div class="enterprise-form-section-title">
+                            Constructor de ejercicios
+                        </div>
+
+                        <p>
+                            Agrega y organiza los ejercicios
+                            que conformarán la rutina.
+                        </p>
+                    </div>
+
+                    <button
+                        id="addExerciseButton"
+                        class="enterprise-button secondary"
+                        type="button"
+                    >
+                        + Agregar ejercicio
+                    </button>
+
+                </div>
+
+                <div
+                    id="exerciseBuilderList"
+                    class="exercise-builder-list"
+                ></div>
+
+                <div
+                    id="exerciseBuilderEmpty"
+                    class="exercise-builder-empty"
+                >
+                    La rutina todavía no contiene ejercicios.
+                </div>
+
+            </div>
+
+            <div
+                id="routineFormMessage"
+                class="form-message"
+                role="alert"
+            ></div>
+
+            <div class="modal-actions">
+
+                <button
+                    id="cancelRoutineButton"
+                    class="enterprise-button secondary"
+                    type="button"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    id="saveRoutineButton"
+                    class="enterprise-button primary"
+                    type="submit"
+                >
+                    Guardar rutina
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+<script src="/js/training-routines.js?v=14"></script>
+
+</body>
+</html>
