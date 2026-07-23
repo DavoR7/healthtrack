@@ -6,7 +6,8 @@ spring:
     name: smartgym-healthtrack
 
   datasource:
-    url: jdbc:postgresql://postgres-prueba.ctcqusoums7y.us-east-2.rds.amazonaws.com:5432/smartgym_db
+    url: jdbc:postgresql://postgres-prueba.ctcqusoums7y.us-east-2.rds.amazonaws.com:5432/smartgym_db?sslmode=disable
+    
     username: postgres
     password: Q%jDhdFwaf3cFaq%HhMB
     driver-class-name: org.postgresql.Driver
